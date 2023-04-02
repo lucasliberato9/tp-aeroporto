@@ -8,18 +8,18 @@ class Voo {
     //DÚVIDA: CÓDIGO EM VOO OU EM VIAGEM?
     private string $origem;
     private string $destino;
-    private DateTime $horario_chegada;
+    private DateTime $horario_partida;
     private Companhia_Aerea $companhia_aerea;
     private string $frequencia;
     private Aeronave $aeronave;
     private int $duracao_estimada;
 
-    public function __constructor(string $p_origem, string $p_destino, DateTime $p_horario_chegada, 
+    public function __constructor(string $p_origem, string $p_destino, DateTime $p_horario_partida, 
     Companhia_Aerea $p_companhia_aerea, string $p_frequencia, Aeronave $p_aeronave, int $p_duracao_estimada) {
 
         $this->origem = $p_origem;
         $this->destino = $p_destino;
-        $this->horario_chegada = $p_horario_chegada;
+        $this->horario_partida = $p_horario_partida;    
         $this->companhia_aerea = $p_companhia_aerea;
         $this->frequencia = $p_frequencia;
         $this->aeronave = $p_aeronave;
