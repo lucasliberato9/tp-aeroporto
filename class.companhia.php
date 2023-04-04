@@ -1,5 +1,5 @@
 <?
-class Companhia_Aerea {
+class Companhia {
 
     private string $nome;
     private string $codigo;

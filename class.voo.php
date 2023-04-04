@@ -1,18 +1,20 @@
 <?
 include_once DateTime;
-include_once("class.companhia_aerea.php");
+include_once("class.companhia.php");
 include_once("class.aeronave.php");
+include_once("class.viagem.php");
 
 class Voo {
     
-    //DÚVIDA: CÓDIGO EM VOO OU EM VIAGEM?
+    private string $nome_do_voo;
     private string $origem;
     private string $destino;
-    private DateTime $horario_partida;
-    private Companhia_Aerea $companhia_aerea;
+    private DateTime $previsao_partida;
+    private Companhia $companhia;
     private string $frequencia;
     private Aeronave $aeronave;
     private int $duracao_estimada;
+    private Viagem $viagens_realizadas = array();
 
     public function __constructor(string $p_origem, string $p_destino, DateTime $p_horario_partida, 
     Companhia_Aerea $p_companhia_aerea, string $p_frequencia, Aeronave $p_aeronave, int $p_duracao_estimada) {
@@ -26,6 +28,10 @@ class Voo {
         $this->duracao_estimada = $p_duracao_estimada;
 
     }
+
+  public function adiciona_viagem()) {
+    //IMPLEMENTAR
+  }
 
 }
 ?>
