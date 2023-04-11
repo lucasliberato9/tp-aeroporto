@@ -1,5 +1,4 @@
 <?
-include_once DateTime;
 include_once("class.aeronave.php");
 
 class Viagem {
