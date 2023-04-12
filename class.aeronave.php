@@ -1,7 +1,8 @@
 <?
 include_once("class.companhia.php");
 
-class Aeronave {
+class Aeronave
+{
 
     private string $fabricante;
     private string $modelo;
@@ -16,17 +17,25 @@ class Aeronave {
     //(Ex.: PR-GUO)
     //No Brasil, somente são permitidos para voos comerciais os prefixos PT,
     //PR, PP, PS, que devem ser validados.
-    
-    public function __constructor(string $p_fabricante, string $p_modelo, int $p_capacidade_passageiros, 
-    float $p_capacidade_carga, string $p_registro_aeronave, Companhia $p_companhia) {
-        
+
+    public function __construct(
+        string $p_fabricante,
+        string $p_modelo,
+        int $p_capacidade_passageiros,
+        float $p_capacidade_carga,
+        string $p_registro_aeronave,
+        Companhia $p_companhia
+    ) {
+
         $this->fabricante = $p_fabricante;
         $this->modelo = $p_modelo;
         $this->capacidade_passageiros = $p_capacidade_passageiros;
         $this->capacidade_carga = $p_capacidade_carga;
         $this->registro_aeronave = $p_registro_aeronave;
         $this->companhia = $p_companhia;
-
+    }
+    public function pegar_capacidade()
+    {
+        return $this->capacidade_passageiros;
     }
 }
-?>
