@@ -10,6 +10,8 @@ class Passagem
     private Aeroporto $aeroporto_destino;
     private array $assentos;
     private array $viagens;
+    private array $passageiro;
+    private bool $embarque = false;
     private float $total_franquia_bagagem;
     private float $preco_total;
     private string $comprador;
@@ -175,5 +177,14 @@ class Passagem
         }
         $this->preco_total = +$total_assentos + +$total_bagagem;
         $this->comprador = $p_comprador;
+        foreach ($this->viagens as $viagem) {
+           $viagem->adicionar_passagem($this);
+        }
+    }
+    public function pegar_passageiro(){
+        return $this->passageiro;
+    }
+    public function embarcar_passageiro(){
+        $this->embarque = true;
     }
 }

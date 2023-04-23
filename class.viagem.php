@@ -9,6 +9,7 @@ class Viagem
     private Aeronave $aeronave;
     private array $assentos_disponiveis;
     private float $preco_assento;
+    private array $passagens;
 
 
     public function __construct(string $p_relatorio, DateTime $p_data_hora_partida, DateTime $p_data_hora_chegada, Aeronave $p_aeronave, float $p_preco_assento)
@@ -31,7 +32,8 @@ class Viagem
         }
         $this->preco_assento = $p_preco_assento;
     }
-    public function pegar_assentos_disponiveis(){
+    public function pegar_assentos_disponiveis()
+    {
         return $this->assentos_disponiveis;
     }
     public function pegar_data_hora_partida()
@@ -42,7 +44,24 @@ class Viagem
     {
         return $this->data_hora_chegada;
     }
-    public function pegar_preco_assento(){
+    public function pegar_preco_assento()
+    {
         return $this->preco_assento;
+    }
+    public function adicionar_passagem($p_passagem)
+    {
+        array_push($this->passagens, $p_passagem);
+    }
+    public function confirmar_embarque($p_passageiro)
+    {
+        foreach ($this->passagens as $passagem) {
+            $passageiro = $passagem->pegar_passageiro();
+            if ($passageiro === $p_passageiro) {
+                $passagem->embarcar_passageiro();
+                echo "O embarque foi confirmado!";
+                return;
+            }
+        }
+        echo "Não foi possivel confirmar o embarque, passageiro não encontrado!";
     }
 }
