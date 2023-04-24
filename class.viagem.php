@@ -1,6 +1,6 @@
 <?
 include_once("class.aeronave.php");
-
+include_once("class.passagem.php");
 class Viagem
 {
     private string $relatorio;
@@ -63,5 +63,14 @@ class Viagem
             }
         }
         echo "Não foi possivel confirmar o embarque, passageiro não encontrado!";
+    }
+    public function iniciar_voo()
+    {
+        foreach ($this->passagens as $passagem) {
+            if (!$passagem->fez_embarque())
+            {
+                $passagem->confirmar_noshow();
+            }
+        }
     }
 }

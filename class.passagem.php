@@ -43,6 +43,14 @@ class Passagem
     {
         $this->checkin = true;
     }
+    public function fez_embarque()
+    {
+        return $this->embarque;
+    }
+    public function confirmar_noshow()
+    {
+        $this->noshow = true;
+    }
     public function intervalo_checkin()
     {
         $hora_atual = new DateTime();
