@@ -23,4 +23,8 @@ class Aeroporto
     {
         return $this->voos;
     }
+    public function pegar_sigla()
+    {
+        return $this->sigla;
+    }
 }

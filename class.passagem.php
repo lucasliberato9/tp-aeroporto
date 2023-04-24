@@ -1,6 +1,7 @@
 <?php
 
 include_once("class.aeroporto.php");
+include_once("class.passageiro.php");
 include_once("class.viagem.php");
 include_once("class.voo.php");
 
@@ -8,14 +9,49 @@ class Passagem
 {
     private Aeroporto $aeroporto_origem;
     private Aeroporto $aeroporto_destino;
+    private float $total_franquia_bagagem;
+    private Passageiro $passageiro;
     private array $assentos;
     private array $viagens;
-    private array $passageiro;
-    private bool $embarque = false;
-    private float $total_franquia_bagagem;
     private float $preco_total;
+    private DateTime $previsao_partida;
     private string $comprador;
 
+    private bool $adquirida;
+    private bool $cancelada;
+    private bool $checkin;
+    private bool $embarque = false;
+    private bool $noshow;
+
+    public function pegar_origem()
+    {
+        return $this->aeroporto_origem;
+    }
+    public function pegar_destino()
+    {
+        return $this->aeroporto_destino;
+    }
+    public function pegar_data()
+    {
+        return $this->previsao_partida;
+    }
+    public function fez_checkin()
+    {
+        return $this->checkin;
+    }
+    public function confirmar_checkin()
+    {
+        $this->checkin = true;
+    }
+    public function intervalo_checkin()
+    {
+        $hora_atual = new DateTime();
+        $segundos = $this->previsao_partida->getTimestamp() - $hora_atual->getTimestamp();
+        if (0 <= $segundos && $segundos <= 174600) {
+            return true;
+        }
+        return false;
+    }
     function verificar_voos(Aeroporto $p_aeroporto)
     {
         $voo_encontrado = false;
@@ -57,7 +93,7 @@ class Passagem
         }
         return $viagem_selecionada;
     }
-    function verificar_conexão(Viagem $p_viagem_selecionada, Voo $voo_conexao)
+    function verificar_conexao(Viagem $p_viagem_selecionada, Voo $voo_conexao)
     {
         $conexao_encontrada = false;
         $data_chegada = $p_viagem_selecionada->pegar_data_hora_chegada();
@@ -76,6 +112,8 @@ class Passagem
         Aeroporto $p_aeroporto_origem,
         Aeroporto $p_aeroporto_destino,
         array $p_franquia_bagagem,
+        Passageiro $p_passageiro,
+        DateTime $p_previsao_partida,
         string $p_comprador
     ) {
 
@@ -119,7 +157,7 @@ class Passagem
                     $this->total_franquia_bagagem = $total_bagagem;
                     $voo_encontrado = true;
                     $viagem_selecionada = $this->selecionar_viagem($voos_origem[$i]);
-                    $viagem_conexao = $this->verificar_conexão($viagem_selecionada, $aux);
+                    $viagem_conexao = $this->verificar_conexao($viagem_selecionada, $aux);
                     if ($viagem_conexao === false) {
                         echo "Não foram encontradas conexões ou viagens diretas a partir do horario de partida selecionado!";
                         exit;
@@ -175,7 +213,9 @@ class Passagem
                 }
             }
         }
+        $this->passageiro = $p_passageiro;
         $this->preco_total = +$total_assentos + +$total_bagagem;
+        $this->previsao_partida = $p_previsao_partida;
         $this->comprador = $p_comprador;
         foreach ($this->viagens as $viagem) {
            $viagem->adicionar_passagem($this);
