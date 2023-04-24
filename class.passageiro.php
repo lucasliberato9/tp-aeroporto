@@ -3,6 +3,8 @@ include_once("class.aeroporto.php");
 include_once("class.passagem.php");
 include_once("class.voo.php");
 
+include_once("validacao.php");
+
 class Passageiro
 {
 
@@ -36,8 +38,11 @@ class Passageiro
         $this->sobrenome = $p_sobrenome;
         $this->documento_identificacao = $p_documento_identificacao;
         $this->nacionalidade = $p_nacionalidade;
+        if (!validarDataNascimento($p_data_nascimento)) throw new Exception("Data inválida.");
         $this->data_nascimento = $p_data_nascimento;
+        if (!validarEmail($p_email)) throw new Exception("Email inválido.");
         $this->email = $p_email;
+        if (!validar_cpf($p_cpf)) throw new Exception("CPF inválido.");
         $this->cpf = $p_cpf;
         $this->vip = $p_vip;
 

@@ -49,7 +49,7 @@ function validarEmail($email) {
 
 // Valida 4 formatos de data
 function validarDataNascimento($data) {
-    $formatos = array('d/m/Y', 'Y-m-d', 'd.m.Y', 'dmY');
+    $formatos = array('d/m/Y', 'd-m-Y', 'd.m.Y', 'dmY');
 
     foreach ($formatos as $formato) {
         $dataObj = DateTime::createFromFormat($formato, $data);
