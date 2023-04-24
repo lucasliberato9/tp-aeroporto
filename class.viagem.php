@@ -1,4 +1,4 @@
-<?
+<?php
 include_once("class.aeronave.php");
 include_once("class.passagem.php");
 class Viagem

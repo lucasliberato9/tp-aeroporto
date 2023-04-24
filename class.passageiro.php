@@ -1,4 +1,4 @@
-<?
+<?php
 include_once("class.aeroporto.php");
 include_once("class.passagem.php");
 include_once("class.voo.php");
@@ -18,7 +18,6 @@ class Passageiro
     private bool $vip;
 
     private array $passagens;
-    private array $historico_voos;
 
     private bool $franquia_adicional = false;
     private bool $gratuidade_alteracao = false;
@@ -59,7 +58,13 @@ class Passageiro
     }
     public function acessar_historico_voos()
     {
-        //implementar em outro momento
+        foreach ($this->passagens as $passagem)
+        {
+            if ($passagem->fez_embarque())
+            {
+                echo $passagem->pegar_origem()->pegar_sigla() . " -> " . $passagem->pegar_destino()->pegar_sigla() . " | " . $passagem->pegar_data();
+            }
+        }
     }
     public function verificar_checkins() {
         foreach ($this->passagens as $passagem) {

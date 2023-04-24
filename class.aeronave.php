@@ -1,4 +1,4 @@
-<?
+<?php
 include_once("class.companhia.php");
 
 class Aeronave

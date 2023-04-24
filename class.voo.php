@@ -1,4 +1,4 @@
-<?
+<?php
 include_once("class.companhia.php");
 include_once("class.aeronave.php");
 include_once("class.viagem.php");
