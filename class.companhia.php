@@ -17,7 +17,7 @@ class Companhia
         string $p_razao_social,
         int $p_cnpj,
         string $p_sigla,
-        float $p_preco_bagagem
+        float $p_preco_bagagem,
         string $programa_milhagem
     ) {
 
