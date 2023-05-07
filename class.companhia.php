@@ -9,6 +9,7 @@ class Companhia
     private string $sigla;
     //A sigla deve ser formada por duas letras.
     private float $preco_bagagem; //o preço é pensado em qual o preço por quilo de passagem
+    private string $programa_milhagem;
 
     public function __construct(
         string $p_nome,
@@ -17,6 +18,7 @@ class Companhia
         int $p_cnpj,
         string $p_sigla,
         float $p_preco_bagagem
+        string $programa_milhagem
     ) {
 
         $this->nome = $p_nome;
@@ -25,6 +27,7 @@ class Companhia
         $this->cnpj = $p_cnpj;
         $this->sigla = $p_sigla;
         $this->preco_bagagem = $p_preco_bagagem;
+        $this->programa_milhagem = $programa_milhagem;
     }
     public function pegar_preco_bagagem()
     {
