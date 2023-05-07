@@ -10,6 +10,7 @@ class Viagem
     private array $assentos_disponiveis;
     private float $preco_assento;
     private array $passagens;
+    private array $passageiros_vip;
 
 
     public function __construct(string $p_relatorio, DateTime $p_data_hora_partida, DateTime $p_data_hora_chegada, Aeronave $p_aeronave, float $p_preco_assento)
@@ -73,4 +74,13 @@ class Viagem
             }
         }
     }
+    public function localiza_passageiro_vip()
+    {
+        foreach ($this->passagens as $passagem) {
+            $passageiro = $passagem->pegar_passageiro();
+            if ($passageiro->eh_vip() == true) {
+                array_push($this->passageiros_vip, $passageiro);
+            }
+        }
+    }   
 }
