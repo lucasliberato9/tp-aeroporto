@@ -1,7 +1,7 @@
 <?php
 class Categoria_Milhagem {
-    public $nome;
-    public $pontos_minimo;
+    private $nome;
+    private $pontos_minimo;
 
     public function __construct($nome, $pontos_minimo) {
         $this->nome = $nome;
