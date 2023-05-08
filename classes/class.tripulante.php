@@ -2,7 +2,8 @@
 include_once("class.companhia.php");
 include_once("class.aeroporto.php");
 
-class Tripulante{
+class Tripulante extends persist
+{
     private string $nome;
     private string $sobrenome;
     private string $documento_identificacao;
@@ -15,6 +16,8 @@ class Tripulante{
     private Companhia $companhia_aerea;
     private Aeroporto $aeroporto_base;
     private string $cargo;
+
+    static $local_filename = "tripulante.txt";
 
     public function __construct(string $nome, string $sobrenome, string $documento_identificacao, string $nacionalidade, string $data_nascimento, string $email, string $cpf, string $CHT, string $endereco, Companhia $companhia_aerea, Aeroporto $aeroporto_base, string $cargo){
         $this->$nome = $nome;
@@ -30,5 +33,7 @@ class Tripulante{
         $this->$aeroporto_base = $aeroporto_base;
         $this->$cargo = $cargo;
     }
-
+    static public function getFilename() {
+        return get_called_class()::$local_filename;
+    }
 }

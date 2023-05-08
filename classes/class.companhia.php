@@ -1,5 +1,5 @@
 <?php
-class Companhia
+class Companhia extends persist
 {
 
     private string $nome;
@@ -9,6 +9,8 @@ class Companhia
     private string $sigla;
     //A sigla deve ser formada por duas letras.
     private float $preco_bagagem; //o preço é pensado em qual o preço por quilo de passagem
+
+    static $local_filename = "companhia.txt";
 
     public function __construct(
         string $p_nome,
@@ -33,5 +35,8 @@ class Companhia
     public function pegar_sigla()
     {
         return $this->sigla;
+    }
+    static public function getFilename() {
+        return get_called_class()::$local_filename;
     }
 }

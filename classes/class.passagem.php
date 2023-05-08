@@ -5,7 +5,7 @@ include_once("class.passageiro.php");
 include_once("class.viagem.php");
 include_once("class.voo.php");
 
-class Passagem
+class Passagem extends persist
 {
     private Aeroporto $aeroporto_origem;
     private Aeroporto $aeroporto_destino;
@@ -22,6 +22,8 @@ class Passagem
     private bool $checkin;
     private bool $embarque = false;
     private bool $noshow;
+
+    static $local_filename = "passagem.txt";
 
     public function pegar_origem()
     {
@@ -234,5 +236,8 @@ class Passagem
     }
     public function embarcar_passageiro(){
         $this->embarque = true;
+    }
+    static public function getFilename() {
+        return get_called_class()::$local_filename;
     }
 }

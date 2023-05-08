@@ -5,7 +5,7 @@ include_once("class.voo.php");
 
 include_once("validacao.php");
 
-class Passageiro
+class Passageiro extends persist
 {
 
     private string $nome;
@@ -22,6 +22,8 @@ class Passageiro
     private bool $franquia_adicional = false;
     private bool $gratuidade_alteracao = false;
     private float $desconto_franquia = 0;
+
+    static $local_filename = "passageiro.txt";
 
     public function __construct(
         string $p_nome,
@@ -84,5 +86,7 @@ class Passageiro
     {
         //implementar em outro momento
     }
-
+    static public function getFilename() {
+        return get_called_class()::$local_filename;
+    }
 }

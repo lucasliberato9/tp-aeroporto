@@ -1,7 +1,7 @@
 <?php
 include_once("class.companhia.php");
 
-class Aeronave
+class Aeronave extends persist
 {
 
     private string $fabricante;
@@ -10,6 +10,8 @@ class Aeronave
     private float $capacidade_carga;
     private string $registro_aeronave;
     private Companhia $companhia;
+    
+    static $local_filename = "aeronave.txt";
     //Registro da aeronave
     //Composto pelo prefixo, que contém duas letras
     //Um hífen
@@ -37,5 +39,8 @@ class Aeronave
     public function pegar_capacidade()
     {
         return $this->capacidade_passageiros;
+    }
+    static public function getFilename() {
+        return get_called_class()::$local_filename;
     }
 }

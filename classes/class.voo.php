@@ -4,7 +4,7 @@ include_once("class.aeronave.php");
 include_once("class.viagem.php");
 include_once("class.aeroporto.php");
 
-class Voo
+class Voo extends persist
 {
 
   private Aeroporto $origem;
@@ -18,6 +18,9 @@ class Voo
   private array $viagens_programadas;
   private array $viagens_realizadas;
   private string $codigo;
+
+  static $local_filename = "voo.txt";
+
   function validar_codigo_voo($codigo, $sigla_companhia)
   {
     $pattern = "/^" . $sigla_companhia . "[A-Z]{2}\d{4}$/";
@@ -94,5 +97,8 @@ class Voo
   public function pegar_preco_bagagem()
   {
     return $this->companhia->pegar_preco_bagagem();
+  }
+  static public function getFilename() {
+    return get_called_class()::$local_filename;
   }
 }

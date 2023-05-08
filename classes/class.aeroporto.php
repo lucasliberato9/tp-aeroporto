@@ -1,6 +1,6 @@
 <?php
 include_once("class.voo.php");
-class Aeroporto
+class Aeroporto extends persist
 {
 
     private string $sigla;
@@ -8,6 +8,8 @@ class Aeroporto
     private string $cidade;
     private string $estado;
     private array $voos;
+    
+    static $local_filename = "aeroporto.txt";
 
     public function __construct(string $p_sigla, string $p_cidade, string $p_estado)
     {
@@ -26,5 +28,8 @@ class Aeroporto
     public function pegar_sigla()
     {
         return $this->sigla;
+    }
+    static public function getFilename() {
+        return get_called_class()::$local_filename;
     }
 }

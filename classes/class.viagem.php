@@ -2,7 +2,7 @@
 include_once("class.aeronave.php");
 include_once("class.passagem.php");
 include_once("class.tripulante.php");
-class Viagem
+class Viagem extends persist
 {
     private string $relatorio;
     private DateTime $data_hora_partida;
@@ -12,6 +12,8 @@ class Viagem
     private float $preco_assento;
     private array $passagens;
     private array $tripulantes = array('Piloto' => null, 'Co-Piloto' => null, 'Comissário' => array());
+
+    static $local_filename = "viagem.txt";
 
     public function __construct(string $p_relatorio, DateTime $p_data_hora_partida, DateTime $p_data_hora_chegada, Aeronave $p_aeronave, float $p_preco_assento)
     {
@@ -103,5 +105,8 @@ class Viagem
         if (count($this->tripulantes['Comissário']) <= 2) {
             throw new Exception('Viagem sem Comissários suficientes');
         }
+    }
+    static public function getFilename() {
+        return get_called_class()::$local_filename;
     }
 }
