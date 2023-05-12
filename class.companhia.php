@@ -8,7 +8,7 @@ class Companhia
     private int $cnpj;
     private string $sigla;
     //A sigla deve ser formada por duas letras.
-    private float $preco_bagagem; //o preço é pensado em qual o preço por quilo de passagem
+    private float $preco_bagagem; //o preço é pensado em qual o preço por quilo de bagagem
     private string $programa_milhagem;
 
     public function __construct(

@@ -84,5 +84,11 @@ class Passageiro
     {
         //implementar em outro momento
     }
-
+    // verifica se o passageiro é VIP ou não
+    public function eh_vip()
+    {
+        if ($this->vip == true) {
+            return true;
+        } else return false;
+    }
 }
